@@ -3,6 +3,18 @@ spring:
     name: shopping-service
   profiles:
     active: dev
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+        alphanumeric-ids:
+          enabled: true
+      client:
+        config:
+          default:
+            connectTimeout: 5000
+            readTimeout: 5000
+            loggerLevel: basic
 server:
   servlet:
     context-path: /store/api/v1
@@ -12,6 +24,8 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:9010/eureka
 feign:
+  #  circuitbreaker:
+  #    enabled: true
   client:
     config:
       default:
